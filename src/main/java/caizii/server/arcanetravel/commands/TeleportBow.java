@@ -13,7 +13,8 @@ import org.bukkit.entity.Player;
 public class TeleportBow implements CommandExecutor {
 
     private ArcaneTravel plugin;
-    public TeleportBow(ArcaneTravel plugin){
+
+    public TeleportBow(ArcaneTravel plugin) {
         this.plugin = plugin;
 
     }

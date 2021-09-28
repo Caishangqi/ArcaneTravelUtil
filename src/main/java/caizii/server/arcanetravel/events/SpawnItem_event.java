@@ -13,13 +13,14 @@ public class SpawnItem_event implements Listener {
     public SpawnItem_event(ArcaneTravel plugin) {
         this.plugin = plugin;
     }
+
     //在进入服务器时依据配置文件自动给予玩家奥术弓箭
-    public void onSpawnEvent(PlayerJoinEvent event){
-    if (plugin.getConfig().getBoolean("give-bow-on-join")){
-        Player player = event.getPlayer();
-        ArcaneBow bow = new ArcaneBow(plugin);
-        bow.get_Arcane_bow(player);
-    }
+    public void onSpawnEvent(PlayerJoinEvent event) {
+        if (plugin.getConfig().getBoolean("give-bow-on-join")) {
+            Player player = event.getPlayer();
+            ArcaneBow bow = new ArcaneBow(plugin);
+            bow.get_Arcane_bow(player);
+        }
 
     }
 }

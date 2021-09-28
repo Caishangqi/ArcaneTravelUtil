@@ -10,15 +10,15 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 
 public class teleportBow_event implements Listener {
     @EventHandler
-    public void onBowShoot(ProjectileHitEvent event){
+    public void onBowShoot(ProjectileHitEvent event) {
         //只让类型为弓箭的实体出发这个事件
-        if(event.getEntity() instanceof Arrow){
+        if (event.getEntity() instanceof Arrow) {
             Player player = (Player) event.getEntity().getShooter();
             Location location = event.getEntity().getLocation();
 
 
             player.teleport(location);
-            player.playSound(location, Sound.ENCHANT_THORNS_HIT,1,1);
+            player.playSound(location, Sound.ENCHANT_THORNS_HIT, 1, 1);
         }
 
     }
