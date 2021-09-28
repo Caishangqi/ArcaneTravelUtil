@@ -1,20 +1,14 @@
 package caizii.server.arcanetravel.commands;
 
 import caizii.server.arcanetravel.ArcaneTravel;
-import caizii.server.arcanetravel.items.Items;
-import caizii.server.arcanetravel.util.util;
+import caizii.server.arcanetravel.items.ArcaneBow;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
-
+//使用指令给予玩家奥术弓箭
 
 public class TeleportBow implements CommandExecutor {
 
@@ -29,7 +23,7 @@ public class TeleportBow implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if (player.hasPermission("at.tpbow")) {
-                Items bow = new Items(plugin);
+                ArcaneBow bow = new ArcaneBow(plugin);
                 bow.get_Arcane_bow(player);
 
             } else {

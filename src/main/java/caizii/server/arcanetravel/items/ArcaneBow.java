@@ -11,10 +11,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 
 
-public class Items {
+public class ArcaneBow {
     ArcaneTravel plugin;
 
-    public Items(ArcaneTravel plugin) {
+    public ArcaneBow(ArcaneTravel plugin) {
         this.plugin = plugin;
     }
 
