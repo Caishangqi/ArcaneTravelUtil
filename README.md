@@ -5,6 +5,15 @@ The plugin of ArcaneTravel, which is a 1.17.1 MMORPG adventure server. The centr
 
 - ItemsAdder 农作物等级和栽培 
 - MMOI 钓鱼和自定义物品NBT值统一
-- Trmenu 和 的界面
+- Trmenu 和UI界面
 - 自定义界面显示各项文字
 - 微调机制
+
+## 关键依赖 (未来)
+
+- MMOI
+- IA
+- Trmenu
+- ItemsAdder
+- ProtocolLib
+- Ecoenchant
