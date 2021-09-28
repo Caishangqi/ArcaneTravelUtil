@@ -1,6 +1,11 @@
-package caizii.server.arcanetravel;
+package caizii.server.arcanetravel.util;
+
+import caizii.server.arcanetravel.ArcaneTravel;
+import caizii.server.arcanetravel.JoinLeaveListener;
+import caizii.server.arcanetravel.util.commandRegister;
+
 //事件注册器，用来集中注册事件
-public class eventRegister extends commandRegister{
+public class eventRegister extends commandRegister {
 
     public eventRegister(ArcaneTravel plugin){
         this.plugin = plugin;

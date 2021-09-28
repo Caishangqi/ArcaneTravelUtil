@@ -2,6 +2,10 @@ package caizii.server.arcanetravel;
 
 import caizii.server.arcanetravel.commands.*;
 import caizii.server.arcanetravel.events.PlayerMove;
+import caizii.server.arcanetravel.events.SpawnItem_event;
+import caizii.server.arcanetravel.events.teleportBow_event;
+import caizii.server.arcanetravel.util.commandRegister;
+import caizii.server.arcanetravel.util.eventRegister;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -29,6 +33,8 @@ public final class ArcaneTravel extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new ShearSheepListener(), this);
         //getServer().getPluginManager().registerEvents(new JoinLeaveListener(), super.plugin);
         getServer().getPluginManager().registerEvents(new PlayerMove(),this);
+        getServer().getPluginManager().registerEvents(new teleportBow_event(), this);
+        getServer().getPluginManager().registerEvents(new SpawnItem_event(this),this);
 
         //事件注册器
         eventRegister eventregister = new eventRegister(this);
@@ -41,6 +47,7 @@ public final class ArcaneTravel extends JavaPlugin implements Listener {
         getCommand("setfood").setExecutor(new Setfood());
         getCommand("sendWord").setExecutor(new sendWord());
         getCommand("baosha").setExecutor(new sendWord());
+        getCommand("arcanebow").setExecutor(new TeleportBow(this));
         /*
         这是先创建一个命令注册器，所有的代码注册全部移动到代码注册器中注册，你需要
         在括号内写入 this 来让插件这个对象class传入 commandRegister 中。再调用

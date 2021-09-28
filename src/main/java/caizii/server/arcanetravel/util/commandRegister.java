@@ -1,4 +1,4 @@
-package caizii.server.arcanetravel;
+package caizii.server.arcanetravel.util;
 
 import caizii.server.arcanetravel.ArcaneTravel;
 import caizii.server.arcanetravel.commands.VaultCommand;

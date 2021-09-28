@@ -37,3 +37,6 @@ commands:
   fly:
     description: 让你飞行~
     usage: /<command>
+  arcanebow:
+    description: 获得一把奥术弓箭
+    usage: /<command>

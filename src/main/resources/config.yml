@@ -7,3 +7,8 @@ FoodList:
 
 on-message: "&6你开开启了飞行模式"
 off-message: "&7你关闭了飞行模式"
+
+##奥术之弓配置
+bow-name: "Arcane bow"
+bow-description: "发射一个传送箭矢"
+give-bow-on-join: true
