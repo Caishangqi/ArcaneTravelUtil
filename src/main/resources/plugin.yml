@@ -1,0 +1,39 @@
+name: ArcaneTravel
+version: '${project.version}'
+main: caizii.server.arcanetravel.ArcaneTravel
+api-version: 1.17
+authors: [ Caizii ]
+description: 奥术之旅整合插件
+website: https://fantang.cc/
+commands:
+  die:
+    description: 让你被自己爆杀
+    usage: /<command>
+  god:
+    description: 让你自己无敌
+    usage: /<command>
+    aliases:
+      - wudi
+  food:
+    description: 让饥饿值恢复
+    usage: /<command>
+    aliases:
+      - fo
+  print:
+    description: 打出yml中的Food值
+    usage: /<command>
+  setfood:
+    description: 设置Food值为默认
+    usage: /<command>
+  sendWord:
+    description: 发送语句
+    usage: /<command>
+  baosha:
+    description: 爆杀其他人或者自己，同时告知别人
+    usage: /<command> [目标]
+  vault:
+    description: 打开一个金库
+    usage: /<command>
+  fly:
+    description: 让你飞行~
+    usage: /<command>

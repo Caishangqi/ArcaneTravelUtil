@@ -1,0 +1,9 @@
+Version: '1.0.0'
+Food: 'Potato'
+FoodList:
+  - 'apple'
+  - 'orange'
+  - 'grape'
+
+on-message: "&6你开开启了飞行模式"
+off-message: "&7你关闭了飞行模式"
