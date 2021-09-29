@@ -50,7 +50,9 @@ public final class ArcaneTravel extends JavaPlugin implements Listener {
         getCommand("arcanebow").setExecutor(new TeleportBow(this));
         getCommand("armorstand").setExecutor(new ArmorStandCommand());
         getCommand("at").setExecutor(new MainGUI());
+        System.out.println("成功加载ArcaneTravel主菜单");
         getCommand("asm").setExecutor(new ArmourStandGUICommand());
+        System.out.println("成功加载盔甲架子主菜单");
 
         /*
         这是先创建一个命令注册器，所有的代码注册全部移动到代码注册器中注册，你需要
