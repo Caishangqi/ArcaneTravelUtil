@@ -13,6 +13,7 @@ public class teleportBow_event implements Listener {
     public void onBowShoot(ProjectileHitEvent event) {
         //只让类型为弓箭的实体出发这个事件
         if (event.getEntity() instanceof Arrow) {
+            //先get这个箭矢，再get箭矢的shooter()
             Player player = (Player) event.getEntity().getShooter();
             Location location = event.getEntity().getLocation();
 

@@ -40,3 +40,9 @@ commands:
   arcanebow:
     description: 获得一把奥术弓箭
     usage: /<command>
+  armorstand:
+    description: 召唤一个特殊的盔甲架
+    usage: /<command>
+  at:
+    description: 打开ArcaneTravel设置界面
+    usage: /<command>
