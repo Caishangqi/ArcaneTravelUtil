@@ -102,6 +102,7 @@ public class MenuHandler implements Listener {
                     player.sendMessage("Add Base?");
                     AS_confirm_menu base_menu = new AS_confirm_menu();
                     base_menu.AS_confrim_menu(player, Material.ANDESITE_SLAB);
+                    break; //千万别忘了break;否则直接执行后面的
                 case GREEN_STAINED_GLASS_PANE:
                     player.sendMessage("Created Armor Stand");
                     if (armorstandinfo.containsKey(player)) {
@@ -149,6 +150,48 @@ public class MenuHandler implements Listener {
                         if (armorstandinfo.containsKey(player)) {
                             ArmorStand stand = armorstandinfo.get(player);
                             stand.setArms(false);
+                        }
+                        AS_create_menu.AS_create_menu(player);
+                        break;
+                    default:
+                        return;
+                }
+            }else if (event.getClickedInventory().contains(Material.LANTERN)) {
+                switch (event.getCurrentItem().getType()) {
+                    case GREEN_STAINED_GLASS_PANE:
+                        player.sendMessage("Option Confirmed");
+                        if (armorstandinfo.containsKey(player)) {
+                            ArmorStand stand = armorstandinfo.get(player);
+                            stand.setGlowing(true);
+                        }
+                        AS_create_menu.AS_create_menu(player);
+                        break;
+                    case RED_STAINED_GLASS_PANE:
+                        player.sendMessage("Option Cancelled");
+                        if (armorstandinfo.containsKey(player)) {
+                            ArmorStand stand = armorstandinfo.get(player);
+                            stand.setGlowing(false);
+                        }
+                        AS_create_menu.AS_create_menu(player);
+                        break;
+                    default:
+                        return;
+                }
+            }else if (event.getClickedInventory().contains(Material.ANDESITE_SLAB)) {
+                switch (event.getCurrentItem().getType()) {
+                    case GREEN_STAINED_GLASS_PANE:
+                        player.sendMessage("Option Confirmed");
+                        if (armorstandinfo.containsKey(player)) {
+                            ArmorStand stand = armorstandinfo.get(player);
+                            stand.setBasePlate(true);
+                        }
+                        AS_create_menu.AS_create_menu(player);
+                        break;
+                    case RED_STAINED_GLASS_PANE:
+                        player.sendMessage("Option Cancelled");
+                        if (armorstandinfo.containsKey(player)) {
+                            ArmorStand stand = armorstandinfo.get(player);
+                            stand.setBasePlate(false);
                         }
                         AS_create_menu.AS_create_menu(player);
                         break;
