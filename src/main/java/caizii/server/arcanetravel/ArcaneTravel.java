@@ -35,6 +35,7 @@ public final class ArcaneTravel extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new SpawnItem_event(this), this);
         getServer().getPluginManager().registerEvents(new EntityMove(),this);
         getServer().getPluginManager().registerEvents(new MenuHandler(),this);
+
         //事件注册器
         eventRegister eventregister = new eventRegister(this);
         eventregister.RegisterEvent();
@@ -49,6 +50,7 @@ public final class ArcaneTravel extends JavaPlugin implements Listener {
         getCommand("arcanebow").setExecutor(new TeleportBow(this));
         getCommand("armorstand").setExecutor(new ArmorStandCommand());
         getCommand("at").setExecutor(new MainGUI());
+        getCommand("asm").setExecutor(new ArmourStandGUICommand());
 
         /*
         这是先创建一个命令注册器，所有的代码注册全部移动到代码注册器中注册，你需要

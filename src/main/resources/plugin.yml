@@ -46,3 +46,6 @@ commands:
   at:
     description: 打开ArcaneTravel设置界面
     usage: /<command>
+  asm:
+    description: 打开盔甲架控制面板
+    usage: /<command>
