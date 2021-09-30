@@ -12,3 +12,11 @@ off-message: "&7你关闭了飞行模式"
 bow-name: "Arcane bow"
 bow-description: "发射一个传送箭矢"
 give-bow-on-join: true
+
+##盔甲架模块配置
+create-message: '&6生成盔甲架'
+delete-message: '&c删除盔甲架预设'
+confirm-option: '&a选项确认'
+cancel-option: '&c选项取消'
+added: '&a添加'
+delete: '&c取消添加'

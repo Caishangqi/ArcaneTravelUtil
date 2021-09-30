@@ -34,7 +34,7 @@ public final class ArcaneTravel extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new teleportBow_event(), this);
         getServer().getPluginManager().registerEvents(new SpawnItem_event(this), this);
         getServer().getPluginManager().registerEvents(new EntityMove(),this);
-        getServer().getPluginManager().registerEvents(new MenuHandler(),this);
+        getServer().getPluginManager().registerEvents(new MenuHandler(this),this);
 
         //事件注册器
         eventRegister eventregister = new eventRegister(this);

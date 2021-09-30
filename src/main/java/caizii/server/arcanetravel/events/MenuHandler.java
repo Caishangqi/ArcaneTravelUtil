@@ -1,5 +1,7 @@
 package caizii.server.arcanetravel.events;
 
+import caizii.server.arcanetravel.ArcaneTravel;
+import caizii.server.arcanetravel.menu.AS_armor_menu;
 import caizii.server.arcanetravel.menu.AS_confirm_menu;
 import caizii.server.arcanetravel.menu.AS_create_menu;
 import net.md_5.bungee.api.ChatColor;
@@ -11,10 +13,17 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 
 public class MenuHandler implements Listener {
+    public ArcaneTravel plugin;
+
+    public MenuHandler(ArcaneTravel plugin) {
+        this.plugin = plugin;
+    }
+
     //盔甲储存HashMap
     public HashMap<Player, ArmorStand> armorstandinfo = new HashMap<>();
 
@@ -47,6 +56,7 @@ public class MenuHandler implements Listener {
         final String AS_MAIN_MENU = ChatColor.BLACK + "ArmourStand GUi";
         final String AS_CREATE_MENU = ChatColor.DARK_GREEN + "Create a ArmorStand";
         final String AS_CONFIRM_MENU = ChatColor.DARK_GREEN + "CONFIRM OPTION";
+        final String AS_ARMOR_MENU = ChatColor.DARK_BLUE + "Choose some Armor";
 
 
         if (event.getView().getTitle().equalsIgnoreCase(AS_MAIN_MENU)) {
@@ -97,6 +107,7 @@ public class MenuHandler implements Listener {
                 case LEATHER_CHESTPLATE:
                     player.sendMessage("Choose Armor?");
                     //建立选择盔甲界面
+                    AS_armor_menu.AS_armor_menu(player);
                     break;
                 case ANDESITE_SLAB:
                     player.sendMessage("Add Base?");
@@ -104,7 +115,7 @@ public class MenuHandler implements Listener {
                     base_menu.AS_confrim_menu(player, Material.ANDESITE_SLAB);
                     break; //千万别忘了break;否则直接执行后面的
                 case GREEN_STAINED_GLASS_PANE:
-                    player.sendMessage("Created Armor Stand");
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("create-message")));
                     if (armorstandinfo.containsKey(player)) {
                         ArmorStand stand = armorstandinfo.get(player);
                         stand.setVisible(true);
@@ -112,7 +123,8 @@ public class MenuHandler implements Listener {
                         player.sendMessage(ChatColor.RED + "释放HashMap缓存");
                     }
                 case RED_STAINED_GLASS_PANE:
-                    player.sendMessage("Delete Armor Stand");
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("delete-message")));
+
                     if (armorstandinfo.containsKey(player)) {
                         ArmorStand stand = armorstandinfo.get(player);
                         stand.remove();
@@ -138,7 +150,7 @@ public class MenuHandler implements Listener {
             if (event.getClickedInventory().contains(Material.ARMOR_STAND)) {
                 switch (event.getCurrentItem().getType()) {
                     case GREEN_STAINED_GLASS_PANE:
-                        player.sendMessage("Option Confirmed");
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("confirm-option")));
                         if (armorstandinfo.containsKey(player)) {
                             ArmorStand stand = armorstandinfo.get(player);
                             stand.setArms(true);
@@ -146,7 +158,7 @@ public class MenuHandler implements Listener {
                         AS_create_menu.AS_create_menu(player);
                         break;
                     case RED_STAINED_GLASS_PANE:
-                        player.sendMessage("Option Cancelled");
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("cancel-option")));
                         if (armorstandinfo.containsKey(player)) {
                             ArmorStand stand = armorstandinfo.get(player);
                             stand.setArms(false);
@@ -156,10 +168,10 @@ public class MenuHandler implements Listener {
                     default:
                         return;
                 }
-            }else if (event.getClickedInventory().contains(Material.LANTERN)) {
+            } else if (event.getClickedInventory().contains(Material.LANTERN)) {
                 switch (event.getCurrentItem().getType()) {
                     case GREEN_STAINED_GLASS_PANE:
-                        player.sendMessage("Option Confirmed");
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("confirm-option")));
                         if (armorstandinfo.containsKey(player)) {
                             ArmorStand stand = armorstandinfo.get(player);
                             stand.setGlowing(true);
@@ -167,7 +179,7 @@ public class MenuHandler implements Listener {
                         AS_create_menu.AS_create_menu(player);
                         break;
                     case RED_STAINED_GLASS_PANE:
-                        player.sendMessage("Option Cancelled");
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("cancel-option")));
                         if (armorstandinfo.containsKey(player)) {
                             ArmorStand stand = armorstandinfo.get(player);
                             stand.setGlowing(false);
@@ -177,10 +189,11 @@ public class MenuHandler implements Listener {
                     default:
                         return;
                 }
-            }else if (event.getClickedInventory().contains(Material.ANDESITE_SLAB)) {
+            } else if (event.getClickedInventory().contains(Material.ANDESITE_SLAB)) {
                 switch (event.getCurrentItem().getType()) {
                     case GREEN_STAINED_GLASS_PANE:
-                        player.sendMessage("Option Confirmed");
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("confirm-option")));
+
                         if (armorstandinfo.containsKey(player)) {
                             ArmorStand stand = armorstandinfo.get(player);
                             stand.setBasePlate(true);
@@ -188,7 +201,7 @@ public class MenuHandler implements Listener {
                         AS_create_menu.AS_create_menu(player);
                         break;
                     case RED_STAINED_GLASS_PANE:
-                        player.sendMessage("Option Cancelled");
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("cancel-option")));
                         if (armorstandinfo.containsKey(player)) {
                             ArmorStand stand = armorstandinfo.get(player);
                             stand.setBasePlate(false);
@@ -199,8 +212,60 @@ public class MenuHandler implements Listener {
                         return;
                 }
             }
+        } else if (event.getView().getTitle().equalsIgnoreCase(AS_ARMOR_MENU)) {
+            if (armorstandinfo.containsKey(player)) {
+                ArmorStand stand = armorstandinfo.get(player);
+                switch (event.getCurrentItem().getType()) {
+                    case DIAMOND_HELMET:
+                        if (stand.getHelmet().getType() == Material.DIAMOND_HELMET) {
+                            stand.setHelmet(null);
+                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("delete")));
+                        } else {
+                            stand.setHelmet(new ItemStack(Material.DIAMOND_HELMET));
+                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("added")));
+                        }
+                        break;
+                    case DIAMOND_CHESTPLATE:
+                        if (stand.getChestplate().getType() == Material.DIAMOND_CHESTPLATE) {
+                            stand.setChestplate(null);
+                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("delete")));
+                        } else {
+                            stand.setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
+                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("added")));
+                        }
+                        break;
+                    case DIAMOND_LEGGINGS:
+                        if (stand.getLeggings().getType() == Material.DIAMOND_LEGGINGS) {
+                            stand.setLeggings(null);
+                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("delete")));
+                        } else {
+                            stand.setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS));
+                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("added")));
+                        }
+                        break;
+                    case DIAMOND_BOOTS:
+                        if (stand.getBoots().getType() == Material.DIAMOND_BOOTS) {
+                            stand.setBoots(null);
+                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("delete")));
+                        } else {
+                            stand.setBoots(new ItemStack(Material.DIAMOND_BOOTS));
+                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("added")));
+                        }
+                        break;
+                    case GREEN_STAINED_GLASS_PANE:
+                        player.sendMessage("Armor Confirmed");
+                        AS_create_menu.AS_create_menu(player);
+                        break;
+                    default:
+                        return;
 
-            event.setCancelled(true);
+                }
+                event.setCancelled(true);
+            }
+
+
         }
+
+        event.setCancelled(true);
     }
 }
