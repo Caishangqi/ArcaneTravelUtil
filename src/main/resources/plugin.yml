@@ -49,3 +49,9 @@ commands:
   asm:
     description: 打开盔甲架控制面板
     usage: /<command>
+  sendMessage:
+    description: 测试自定义配置文件的内容
+    usage: /<command>
+  atreload:
+    description: 重载插件配置文件
+    usage: /<command>

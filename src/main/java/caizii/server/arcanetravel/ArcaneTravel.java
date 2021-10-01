@@ -2,6 +2,7 @@ package caizii.server.arcanetravel;
 
 import caizii.server.arcanetravel.commands.*;
 import caizii.server.arcanetravel.events.*;
+import caizii.server.arcanetravel.files.ConfigFile;
 import caizii.server.arcanetravel.util.commandRegister;
 import caizii.server.arcanetravel.util.eventRegister;
 import org.bukkit.ChatColor;
@@ -24,6 +25,11 @@ public final class ArcaneTravel extends JavaPlugin implements Listener {
         //加载config.yml
         getConfig().options().copyDefaults();
         saveDefaultConfig();
+        //加载自定义config
+        ConfigFile.setup();
+        ConfigFile.getFile().addDefault("Message","This is the default message");
+        ConfigFile.getFile().options().copyDefaults(true);
+        ConfigFile.SaveFile();
         //别忘了事件要监听
         getServer().getPluginManager().registerEvents(this, this);
         //在不同的class 注册事件
@@ -33,8 +39,8 @@ public final class ArcaneTravel extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new PlayerMove(), this);
         getServer().getPluginManager().registerEvents(new teleportBow_event(), this);
         getServer().getPluginManager().registerEvents(new SpawnItem_event(this), this);
-        getServer().getPluginManager().registerEvents(new EntityMove(),this);
-        getServer().getPluginManager().registerEvents(new MenuHandler(this),this);
+        getServer().getPluginManager().registerEvents(new EntityMove(), this);
+        getServer().getPluginManager().registerEvents(new MenuHandler(this), this);
 
         //事件注册器
         eventRegister eventregister = new eventRegister(this);
@@ -50,6 +56,8 @@ public final class ArcaneTravel extends JavaPlugin implements Listener {
         getCommand("arcanebow").setExecutor(new TeleportBow(this));
         getCommand("armorstand").setExecutor(new ArmorStandCommand());
         getCommand("at").setExecutor(new MainGUI());
+        getCommand("sendMessage").setExecutor(new ConfigFileCommand());
+        getCommand("atreload").setExecutor(new ReloadCommand());
         System.out.println("成功加载ArcaneTravel主菜单");
         getCommand("asm").setExecutor(new ArmourStandGUICommand());
         System.out.println("成功加载盔甲架子主菜单");
